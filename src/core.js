@@ -114,10 +114,10 @@ async function getChampionData({
   await message.reply(`Searching ${kindOfData} for ${champion}...`);
 
   try {
-    await fs.promises.stat(`${imagesDir}/${fileName}eqwewqewq`);
+    await fs.promises.stat(`${imagesDir}/${fileName}`);
   } catch {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
     });
     const page = await browser.newPage();
 
