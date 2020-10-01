@@ -101,7 +101,7 @@ async function getChampionData({
   }
 
   const championNames = lolChampions.map(champion =>
-    champion.name.toLocaleLowerCase(),
+    champion.name.toLocaleLowerCase().trim(),
   );
 
   if (!championNames.includes(champion)) {
@@ -111,7 +111,7 @@ async function getChampionData({
 
   const fileName = `${kindOfData}-${champion}.jpeg`;
 
-  await message.reply(`Searching ${kindOfData} for ${champion}...`);
+  await message.reply(`Searching ${kindOfData} for **${champion}**...`);
 
   try {
     await fs.promises.stat(`${imagesDir}/${fileName}`);
@@ -157,7 +157,7 @@ async function getChampionData({
   } finally {
     try {
       await message.channel.send(
-        `${customMessage || `Most used ${kindOfData} for ${champion}`}`,
+        `${customMessage || `Most used ${kindOfData} for **${champion}**`}`,
         {
           files: [`${imagesDir}/${fileName}`],
         },
