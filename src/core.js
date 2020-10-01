@@ -1,12 +1,13 @@
+require('dotenv/config');
+
 const fs = require('fs');
 const lolChampions = require('lol-champions');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const { Client } = require('discord.js');
-const CONFIG = require('./env');
 
 const imagesDir = path.resolve(__dirname, 'images');
-const token = CONFIG.botToken;
+const token = process.env.BOT_TOKEN;
 
 const client = new Client();
 
@@ -42,7 +43,7 @@ client.on('message', async message => {
     if (command === '!!build') {
       await getChampionData({
         message,
-        champion: args[0],
+        champion: args[0].toLowerCase(),
         kindOfData: 'build',
         elementClass: '._grid-3._grid-columns',
         elementIndex: 3,
@@ -50,7 +51,7 @@ client.on('message', async message => {
     }
 
     if (command === '!!reset') {
-      if (message.author.tag !== CONFIG.adminTag) return;
+      if (message.author.tag !== process.env.ADMIN_TAG) return;
       const champion = args[0];
 
       if (!champion) {
@@ -99,7 +100,9 @@ async function getChampionData({
     return;
   }
 
-  const championNames = lolChampions.map(champion => champion.name);
+  const championNames = lolChampions.map(champion =>
+    champion.name.toLocaleLowerCase(),
+  );
 
   if (!championNames.includes(champion)) {
     await message.reply('Invalid champion name');

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
     "lol-champions": "^10.20.1",
     "puppeteer": "^5.3.1",
     "uuid": "^8.3.0"
