@@ -1,0 +1,19 @@
+{
+  "name": "champions-builds",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/core.js",
+    "start:dev": "nodemon src/core.js"
+  },
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "lol-champions": "^10.20.1",
+    "puppeteer": "^5.3.1",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
