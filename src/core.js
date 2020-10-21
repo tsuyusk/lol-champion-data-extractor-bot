@@ -22,7 +22,7 @@ client.on('message', async message => {
     if (command === '!!matchups') {
       await getChampionData({
         message,
-        champion: args[0],
+        champion: args[0].toLowerCase(),
         elementClass: '.counters-container',
         elementIndex: 0,
         kindOfData: 'matchups',
@@ -33,10 +33,21 @@ client.on('message', async message => {
     if (command === '!!runes') {
       await getChampionData({
         message,
-        champion: args[0],
+        champion: args[0].toLowerCase(),
         kindOfData: 'runes',
-        elementClass: '.grid-block-header + .grid-block-content',
-        elementIndex: 1,
+        elementClass: '.rune-trees-container-2',
+        elementIndex: 0,
+      });
+    }
+
+    if (command === '!!skills') {
+      await getChampionData({
+        message,
+        champion: args[0].toLowerCase(),
+        kindOfData: 'skills',
+        elementClass:
+          '.content-section.content-section_no-padding.recommended-build_skills',
+        elementIndex: 0,
       });
     }
 
@@ -45,8 +56,9 @@ client.on('message', async message => {
         message,
         champion: args[0].toLowerCase(),
         kindOfData: 'build',
-        elementClass: '._grid-3._grid-columns',
-        elementIndex: 3,
+        elementClass:
+          '.content-section.content-section_no-padding.recommended-build_items',
+        elementIndex: 1,
       });
     }
 
