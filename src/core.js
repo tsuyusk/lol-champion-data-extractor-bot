@@ -116,7 +116,11 @@ async function getChampionData({
     champion.name.toLocaleLowerCase().trim(),
   );
 
-  if (!championNames.includes(champion)) {
+  if (
+    !championNames
+      .map(champion => champion.replace(' ', '_'))
+      .includes(champion)
+  ) {
     await message.reply('Invalid champion name');
     return;
   }
